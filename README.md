@@ -1,2 +1,2 @@
 # TechPoint
-Fully funcctional website using jsp and servlet
+Web site using JSP and Servlet
