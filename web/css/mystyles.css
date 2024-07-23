@@ -1,0 +1,67 @@
+@import url('animation.css');
+@import url('mediaqueries.css');
+
+
+.nav-background{
+    background-color: #304ffe;
+
+}
+.primary-background{
+    background-color:#3D5AFE!important;
+
+}
+
+.custom-left-margin {
+    margin-left: 50px; /* Initial margin for large screens */
+    margin-right: 50px; /* Initial margin for large screens */
+    transition: margin-left 0.3s; /* Smooth transition */
+}
+
+
+.btns{
+    margin-top: 40px;
+    /*margin-bottom: -30px;*/
+}
+
+.fade-in {
+
+    animation: fadeIn 2s ease-in-out;
+}
+
+
+.card-container{
+    margin-top:20px;
+}
+
+
+
+#passwordEye {
+    cursor: pointer;
+    color: #007bff; /* Default color */
+    font-size: 18px; /* Adjust size as needed */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size change */
+}
+
+#passwordEye:hover {
+    color: #0056b3; /* Color on hover */
+}
+#passwordEye.pulsing {
+    animation: pulse 1s infinite;
+}
+
+/*profile page*/ 
+/* Ensure the items are highlighted and clear */
+.navbar-nav.ms-auto .nav-item .nav-link {
+    color: #ffffff; 
+    font-weight: bold; 
+    text-decoration: none; 
+    
+}
+.navbar-nav.ms-auto .nav-item {
+    margin-right: 20px; /* Adjust as needed */
+}
+
+.navbar-nav.ms-auto .nav-item .nav-link:hover {
+    color: #d1d1d1; /* Change color on hover */
+}
+
