@@ -66,9 +66,9 @@ public class RegisterServlet extends HttpServlet {
                 sendResponse(response, "Registration failed.");
             }
         } catch (SQLException e) {
-            if (e.getMessage().contains("Duplicate entry for email")) {
+            if (e.getMessage().contains("Duplicate entry for email.")) {
                 sendResponse(response, "This email is already registered. Please use a different email.");
-            } else if (e.getMessage().contains("Duplicate entry for phone number")) {
+            } else if (e.getMessage().contains("Duplicate entry for phone number.")) {
                 sendResponse(response, "This phone number is already registered. Please use a different phone number.");
             } else {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

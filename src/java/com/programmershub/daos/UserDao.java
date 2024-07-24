@@ -89,7 +89,7 @@ public class UserDao {
                 if (message.contains("EMAIL")) {
                     throw new SQLException("Duplicate entry for email.", e);
                 } else if (message.contains("unique_phone_number")) {
-                    throw new SQLException("Duplicate entry for phone number......", e);
+                    throw new SQLException("Duplicate entry for phone number.", e);
                 } else {
                     throw new SQLException("Duplicate entry.", e);
                 }

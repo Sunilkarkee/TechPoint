@@ -13,10 +13,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Profile</title>
+
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
         <!-- Custom CSS -->
         <link href="css/mystyles.css" rel="stylesheet" type="text/css"/>
         <style>
@@ -59,7 +65,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="#!" data-bs-toggle="modal" data-bs-target="#profile-modal">
-                                <span class="fa fa-user-circle"></span> <%= user.getName() %>
+                                <span class="fa fa-user-circle"></span> <%= user.getName()%>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -80,35 +86,35 @@
                     </div>
                     <div class="modal-body">
                         <div class="container text-center">
-                            <img id="img" src="profilepics/<%= user.getProfile() %>" alt="Profile Picture">
+                            <img id="img" src="profilepics/<%= user.getProfile()%>" alt="Profile Picture">
                             <br>
-                            <h5 class="modal-title" id="staticBackdropLabel"><%= user.getName() %></h5>  
+                            <h5 class="modal-title" id="staticBackdropLabel"><%= user.getName()%></h5>  
 
                             <div id="profile-details">
                                 <table class="table table-hover">
                                     <tr>
                                         <th scope="row">Name</th> 
-                                        <td><%= user.getName() %></td>
+                                        <td><%= user.getName()%></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Email</th> 
-                                        <td><%= user.getEmail() %></td>
+                                        <td><%= user.getEmail()%></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Phone</th> 
-                                        <td><%= user.getPhone_number() %></td>
+                                        <td><%= user.getPhone_number()%></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Gender</th> 
-                                        <td><%= user.getGender().toUpperCase() %></td>
+                                        <td><%= user.getGender().toUpperCase()%></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Status</th> 
-                                        <td><%= user.getAbout() %></td>
+                                        <td><%= user.getAbout()%></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Registered on</th> 
-                                        <td><%= user.getCreated_at().toString() %></td>
+                                        <td><%= user.getCreated_at().toString()%></td>
                                     </tr>
                                 </table>
                             </div>
@@ -116,35 +122,35 @@
                             <!-- Profile Editing Form -->
                             <div id="profile-edit" style="display:none">
                                 <h3 class="mt-2">Edit your info here</h3>
-                                <form action="EditServlet" method="post" enctype="multipart/form-data">
+                                <form id="editForm" action="EditServlet" method="post" enctype="multipart/form-data">
                                     <table class="table table-hover">
                                         <tr>
                                             <th scope="row">ID</th> 
-                                            <td><%= user.getId() %></td>
+                                            <td><%= user.getId()%></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Name</th> 
-                                            <td><input class="form-control" type="text" name="user_name" value="<%= user.getName() %>"></td>
+                                            <td><input class="form-control" type="text" name="user_name" value="<%= user.getName()%>"></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Email</th> 
-                                            <td><input class="form-control" type="email" name="user_email" value="<%= user.getEmail() %>"></td>
+                                            <td><input class="form-control" type="email" name="user_email" value="<%= user.getEmail()%>"></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Phone</th> 
-                                            <td><input class="form-control" type="tel" name="user_phone" value="<%= user.getPhone_number() %>"></td>
+                                            <td><input class="form-control" type="tel" name="user_phone" value="<%= user.getPhone_number()%>"></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Password</th> 
-                                            <td><input class="form-control" type="password" name="user_pwd" value="<%= user.getPassword() %>"></td>
+                                            <td><input class="form-control" type="password" name="user_pwd" value="<%= user.getPassword()%>"></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Gender</th> 
-                                            <td><%= user.getGender().toUpperCase() %></td>
+                                            <td><%= user.getGender().toUpperCase()%></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Status</th> 
-                                            <td><textarea rows="5" class="form-control" name="user_about"><%= user.getAbout() %></textarea></td>
+                                            <td><textarea rows="5" class="form-control" name="user_about"><%= user.getAbout()%></textarea></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">New Profile Picture</th> 
@@ -169,25 +175,11 @@
         <!-- JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
         <script src="JS/myjs.js"></script>
+        <script src="JS/profile.js"></script>
 
-        <script>
-            $(document).ready(function () {
-                let editStatus = false;
-                $("#edit-btn").click(function () {
-                    if (!editStatus) {
-                        $('#profile-details').hide();
-                        $('#profile-edit').show();
-                        $("#edit-btn").text('Cancel');
-                        editStatus = true;
-                    } else {
-                        $('#profile-details').show();
-                        $('#profile-edit').hide();
-                        $("#edit-btn").text('Edit');
-                        editStatus = false;
-                    }
-                });
-            });
-        </script>
+       
+
     </body>
 </html>

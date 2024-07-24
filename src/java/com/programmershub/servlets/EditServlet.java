@@ -100,8 +100,14 @@ public class EditServlet extends HttpServlet {
                 sendResponse(response, "Update failed.");
             }
         } catch (SQLException e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            sendResponse(response, "Internal server error: " + e.getMessage());
+            if (e.getMessage().contains("Duplicate entry for email")) {
+                sendResponse(response, "This email is already registered. Please use a different email.");
+            } else if (e.getMessage().contains("Duplicate entry for phone number")) {
+                sendResponse(response, "This phone number is already registered. Please use a different phone number.");
+            } else {
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                sendResponse(response, "Internal server error: " + e.getMessage());
+            }
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             sendResponse(response, "Internal server error: " + e.getMessage());
@@ -121,9 +127,9 @@ public class EditServlet extends HttpServlet {
 
     private void sendResponse(HttpServletResponse response, String message) throws IOException {
         try (PrintWriter out = response.getWriter()) {
-            out.println("<html><body>");
-            out.println("<h1>" + message + "</h1>");
-            out.println("</body></html>");
+          
+            out.println( message);
+            
         }
     }
 
