@@ -1,8 +1,10 @@
 package com.programmershub.servlets;
 
 import com.programmershub.daos.UserDao;
+import com.programmershub.entities.Messages;
 import com.programmershub.entities.User;
 import com.programmershub.helper.PgmDbConnector;
+import com.programmershub.helper.ImageHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
@@ -10,41 +12,28 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import javax.imageio.ImageIO;
 
 @MultipartConfig
 public class EditServlet extends HttpServlet {
 
-    private static final int MAX_WIDTH = 600; // Max width of the image
-    private static final int MAX_HEIGHT = 600; // Max height of the image
+    private static final String UPLOAD_DIRECTORY = "C:\\Users\\Suneel\\Desktop\\JAVA PROJECTS\\ProgrammersHub\\web\\profilepics";
 
-   
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        // Ensure request is multipart
-        String contentType = request.getContentType();
-        if (contentType == null || !contentType.contains("multipart/form-data")) {
+        if (request.getContentType() == null || !request.getContentType().contains("multipart/form-data")) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             sendResponse(response, "Request must be of type multipart/form-data");
             return;
         }
 
-        // Getting user from the HTTP session
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("currentUser");
         if (user == null) {
@@ -52,97 +41,80 @@ public class EditServlet extends HttpServlet {
             return;
         }
 
-        // Fetch all data from the edit form
         String userName = request.getParameter("user_name");
         String userEmail = request.getParameter("user_email");
         String userNumber = request.getParameter("user_phone");
         String userPassword = request.getParameter("user_pwd");
         String userAbout = request.getParameter("user_about");
 
-        // Handle file upload
         Part filePart = request.getPart("image");
-        String profilePicPath = user.getProfile(); // Default to existing profile picture
-        if (filePart != null && filePart.getSize() > 0) {
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-            String uploadDir = getServletContext().getRealPath("") + File.separator + "profilepics";
-            File uploadDirFile = new File(uploadDir);
-            if (!uploadDirFile.exists()) {
-                uploadDirFile.mkdir();
-            }
+        String newImageName = (filePart != null && !filePart.getSubmittedFileName().isEmpty()) ? filePart.getSubmittedFileName() : null;
 
-            // Resize the image before saving
-            InputStream fileContent = filePart.getInputStream();
-            BufferedImage originalImage = ImageIO.read(fileContent);
-            BufferedImage resizedImage = resizeImage(originalImage, MAX_WIDTH, MAX_HEIGHT);
-
-            File file = new File(uploadDir + File.separator + fileName);
-            try (FileOutputStream outStream = new FileOutputStream(file)) {
-                ImageIO.write(resizedImage, "jpg", outStream); // Save as JPG format
-            }
-            profilePicPath = fileName;
+        String oldImageName = user.getProfile(); // Get the old profile picture name
+        if (newImageName != null) {
+            user.setProfile(newImageName);
         }
 
-        // Update user details
         user.setName(userName);
         user.setEmail(userEmail);
         user.setPhone_number(userNumber);
         user.setPassword(userPassword);
         user.setAbout(userAbout);
-        user.setProfile(profilePicPath);
 
-        // Create UserDao object and attempt to save the user
         try (Connection con = PgmDbConnector.makeConnection()) {
             UserDao dao = new UserDao(con);
             boolean isSuccess = dao.updateUser(user);
             if (isSuccess) {
+                if (newImageName != null) {
+                    File uploadDir = new File(UPLOAD_DIRECTORY);
+                    if (!uploadDir.exists()) {
+                        uploadDir.mkdirs();
+                    }
+                    String path = UPLOAD_DIRECTORY + File.separator + newImageName;
+                    if (ImageHandler.saveFile(filePart.getInputStream(), path)) {
+                        // Delete old image except default.png
+                        if (oldImageName != null && !oldImageName.equals("default.png")) {
+                            String oldImagePath = UPLOAD_DIRECTORY + File.separator + oldImageName;
+                            ImageHandler.deleteFile(oldImagePath);
+                        }
+                        setSessionMessage(session, "Profile updated successfully.", "success", "alert-success");
+                    } else {
+                        setSessionMessage(session, "File upload failed.", "error", "alert-danger");
+                    }
+                } else {
+                    setSessionMessage(session, "Profile updated successfully.", "success", "alert-success");
+                }
                 sendResponse(response, "Update successful.");
             } else {
+                setSessionMessage(session, "Update failed.", "error", "alert-danger");
                 sendResponse(response, "Update failed.");
             }
         } catch (SQLException e) {
-            if (e.getMessage().contains("Duplicate entry for email")) {
-                sendResponse(response, "This email is already registered. Please use a different email.");
-            } else if (e.getMessage().contains("Duplicate entry for phone number")) {
-                sendResponse(response, "This phone number is already registered. Please use a different phone number.");
-            } else {
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                sendResponse(response, "Internal server error: " + e.getMessage());
-            }
+            handleSQLException(response, e);
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             sendResponse(response, "Internal server error: " + e.getMessage());
         }
     }
 
-    private BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
-        Image tmp = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_SMOOTH);
-        BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
-
-        Graphics2D g2d = resizedImage.createGraphics();
-        g2d.drawImage(tmp, 0, 0, null);
-        g2d.dispose();
-
-        return resizedImage;
-    }
-
     private void sendResponse(HttpServletResponse response, String message) throws IOException {
         try (PrintWriter out = response.getWriter()) {
-          
-            out.println( message);
-            
+            out.println(message);
         }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    private void setSessionMessage(HttpSession session, String content, String type, String cssClass) {
+        Messages msg = new Messages(content, type, cssClass);
+        session.setAttribute("msg", msg);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    private void handleSQLException(HttpServletResponse response, SQLException e) throws IOException {
+        if (e.getMessage().contains("Duplicate entry")) {
+            sendResponse(response, "Duplicate entry: " + e.getMessage());
+        } else {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            sendResponse(response, "Internal server error: " + e.getMessage());
+        }
     }
 
     @Override

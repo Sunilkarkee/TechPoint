@@ -25,7 +25,7 @@
     <body>
         <%@include file="navbar.jsp" %>
 
-        <main class="d-flex align-items-center primary-background banner-background" style="height: 70vh">
+        <main class="d-flex align-items-center primary-background banner-background" style="height:100vh; ">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6 col-sm-8">
@@ -38,24 +38,17 @@
 
                             <%
                                 Messages m = (Messages) session.getAttribute("msg");
-                                if (m != null){
+                                if (m != null) {
                             %>
-                            <div id="alertMessage" class="alert <%= m.getCssClass() %>" role="alert">
-                               <%= m.getContent()%>
+                            <div id="alertMessage" class="alert <%= m.getCssClass()%>" role="alert">
+                                <%= m.getContent()%>
                             </div>
-                            
+
                             <%
-                                session.removeAttribute("msg");
+                                    session.removeAttribute("msg");
                                 }
-                                
+
                             %>
-
-
-                            
-
-
-
-
                             <div class="card-body">
                                 <form action="LoginServlet" method="post">
                                     <div class="mb-3">

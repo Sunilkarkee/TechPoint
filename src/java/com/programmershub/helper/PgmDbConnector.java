@@ -17,7 +17,6 @@ public class PgmDbConnector {
             if (con == null || con.isClosed()) {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(DBURL, USERNAME, USERPASSWORD);
-                System.out.println("Connection established successfully!");
             }
         } catch (ClassNotFoundException | SQLException e) {
            

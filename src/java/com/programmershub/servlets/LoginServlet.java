@@ -1,6 +1,5 @@
 package com.programmershub.servlets;
 
-import com.mysql.cj.protocol.Message;
 import com.programmershub.daos.UserDao;
 import com.programmershub.entities.Messages;
 import com.programmershub.entities.User;

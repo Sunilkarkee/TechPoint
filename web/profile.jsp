@@ -1,5 +1,7 @@
+<%@page import="com.programmershub.entities.Messages"%>
 <%@page import="com.programmershub.entities.User"%>
 <%
+    // Check if user is logged in
     User user = (User) session.getAttribute("currentUser");
     if (user == null) {
         response.sendRedirect("login.jsp");
@@ -36,6 +38,7 @@
         </style>
     </head>
     <body>
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark nav-background">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.jsp">TechPoint</a>
@@ -76,6 +79,19 @@
             </div>
         </nav>
 
+        <!-- Display Messages -->
+        <%
+            Messages m = (Messages) session.getAttribute("msg");
+            if (m != null) {
+        %>
+        <div id="alertMessage" class="alert <%= m.getCssClass()%>" role="alert">
+            <%= m.getContent()%>
+        </div>
+        <%
+                session.removeAttribute("msg");
+            }
+        %>
+
         <!-- Profile Modal -->
         <div class="modal fade" id="profile-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -89,7 +105,6 @@
                             <img id="img" src="profilepics/<%= user.getProfile()%>" alt="Profile Picture">
                             <br>
                             <h5 class="modal-title" id="staticBackdropLabel"><%= user.getName()%></h5>  
-
                             <div id="profile-details">
                                 <table class="table table-hover">
                                     <tr>
@@ -178,8 +193,5 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
         <script src="JS/myjs.js"></script>
         <script src="JS/profile.js"></script>
-
-       
-
     </body>
 </html>
