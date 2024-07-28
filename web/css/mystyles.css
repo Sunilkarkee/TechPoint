@@ -31,6 +31,26 @@ html{
     transition: margin-left 0.3s; /* Smooth transition */
 }
 
+/*hover effects for navbar items*/
+.navbar-hover:hover {
+    color: lightgreen!important;
+    transform: scale(1.1);
+    text-decoration: none;
+}
+
+
+/*hover effect for search button*/
+
+.btn-hover:hover {
+    background-color: lightgreen!important;
+    color: #fff; /* Optional: change text color if needed */
+}
+
+
+
+
+
+
 
 .btns{
     margin-top: 40px;

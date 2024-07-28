@@ -44,10 +44,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
+                            <a class="nav-link active navbar-hover" aria-current="page" href="index.jsp">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-white navbar-hover" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Categories
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -58,13 +58,13 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Contact Us</a>
+                            <a class="nav-link text-white navbar-hover" href="#">Contact Us</a>
                         </li>
                     </ul>
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="dopostbtn" >
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#!" data-bs-toggle="modal" data-bs-target="#dopost-Modal"><i class="fa fa-edit"></i> DoPost</a>
+                            <a class="nav-link text-white navbar-hover" href="#!" data-bs-toggle="modal" data-bs-target="#dopost-Modal"><i class="fa fa-edit"></i> DoPost</a>
                         </li>
                     </ul>
 
@@ -75,13 +75,13 @@
                     <div id="userloginout">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#!" data-bs-toggle="modal" data-bs-target="#profile-modal">
+                                <a class="nav-link navbar-hover" href="#!" data-bs-toggle="modal" data-bs-target="#profile-modal">
                                     <i class="fa fa-user-circle"></i> <%= user.getName()%>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="Logout"><span class="fa fa-user-plus"></span> Logout</a>
+                                <a class="nav-link navbar-hover" href="Logout"><span class="fa fa-user-plus"></span> Logout</a>
                             </li>
 
                         </ul>
