@@ -1,0 +1,126 @@
+
+
+
+
+
+
+.nav-background{
+    background-color: #304ffe;
+
+}
+.primary-background{
+    background-color:#3D5AFE!important;
+
+}
+
+.banner-background {
+                clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 78% 98%, 51% 90%, 0 100%, 0 0);
+            }
+
+
+
+
+/* Ensure the items (profile and logout) are highlighted and clear */
+#userloginout .navbar-nav .nav-item .nav-link {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 15px !important;
+}
+
+#userloginout .navbar-nav .nav-item {
+    margin-right: 20px;
+    margin-bottom: 0; /* Add this line to ensure no extra space at the bottom */
+    padding-bottom: 0; /* Add this line to ensure no extra padding at the bottom */
+}
+
+/* Adjust margin to reduce space between list items */
+#userloginout .navbar-nav .nav-item + .nav-item {
+    margin-left: -30px; /* Adjust this value as needed */
+}
+
+#userloginout .navbar-nav .nav-item .nav-link:hover {
+    color: #fba7a7;
+    transform: scale(1.1);
+    text-decoration: none;
+}
+
+
+
+/*profile image*/
+#profileimg{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}
+
+
+/*for navbar contents*/ 
+#navbarSupportedContent {
+    margin-left: 80px;
+}
+
+#navbarSupportedContent ul li {
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0px 25px;
+}
+
+
+
+
+/*category*/
+/*.dopost {
+
+
+    font-weight: bold!important;
+
+}
+
+.dopost{
+    font-size: 17px;
+    font-weight: bold!important;
+    color: transparent!important;  Make text transparent so the gradient shows through 
+    background-image: linear-gradient(45deg, #ffb3ba, #c49c6e, #bfbf76, #77b084, #ff7e74, #3b82f6, #c084fc, #db2777);
+
+    -webkit-background-clip: text;  Clip the background to text for WebKit-based browsers 
+    background-clip: text;  Clip the background to text for other browsers 
+    -webkit-text-stroke: 1px #ffd6fc;  Add an outline for WebKit-based browsers 
+    text-stroke: 1px #ffd6fc;  Add an outline for other browsers 
+    animation: gradientAnimation 30s linear infinite;
+    font-weight: bold;
+}
+#do-post:hover{
+    transform: scale(1.1);
+}
+.logo{
+    font-weight: bold!important;
+}
+
+
+#postcat{
+    width:300px;
+    height:35px;
+    background-color:white;
+    border:none;
+    font-weight:600;
+}
+
+
+
+category
+
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.dropdown-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+
+*/

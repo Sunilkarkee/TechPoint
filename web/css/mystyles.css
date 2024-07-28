@@ -1,7 +1,17 @@
 @import url('animation.css');
 @import url('mediaqueries.css');
 
+html{
+    font-family:
+        -apple-system,
+        system-ui,
+        Segoe UI,
+        Noto Sans,
+        Helvetica,
+        Arial,
+        sans-serif;
 
+}
 .nav-background{
     background-color: #304ffe;
 
@@ -10,6 +20,10 @@
     background-color:#3D5AFE!important;
 
 }
+ .banner-background {
+                clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 78% 98%, 51% 90%, 0 100%, 0 0);
+            }
+           
 
 .custom-left-margin {
     margin-left: 50px; /* Initial margin for large screens */
@@ -34,7 +48,7 @@
 }
 
 
-
+/*login and signup page*/
 #passwordEye {
     cursor: pointer;
     color: #007bff; /* Default color */
@@ -49,19 +63,16 @@
     animation: pulse 1s infinite;
 }
 
-/*profile page*/ 
-/* Ensure the items are highlighted and clear */
-.navbar-nav.ms-auto .nav-item .nav-link {
-    color: #ffffff; 
-    font-weight: bold; 
-    text-decoration: none; 
-    
-}
-.navbar-nav.ms-auto .nav-item {
-    margin-right: 20px; /* Adjust as needed */
+
+
+/*for navbar contents*/
+
+#navbarSupportedContent {
+    margin-left: 80px;
 }
 
-.navbar-nav.ms-auto .nav-item .nav-link:hover {
-    color: #d1d1d1; /* Change color on hover */
+#navbarSupportedContent ul li {
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0px 25px;
 }
-
