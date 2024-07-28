@@ -1,3 +1,5 @@
+
+
 /* global Swal */
 
 $(document).ready(function () {

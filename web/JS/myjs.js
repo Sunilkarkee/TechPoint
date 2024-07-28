@@ -1,5 +1,5 @@
 
-//form page paswword fiel both signup page and login page 
+//form page pasword field both signup page and login page 
 
 
 function togglePassword() {

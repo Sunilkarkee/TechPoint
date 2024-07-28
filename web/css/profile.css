@@ -1,6 +1,16 @@
 
 
+html{
+    font-family:
+        -apple-system,
+        system-ui,
+        Segoe UI,
+        Noto Sans,
+        Helvetica,
+        Arial,
+        sans-serif;
 
+}
 
 
 
@@ -13,9 +23,10 @@
 
 }
 
+/*for backgroud opf page*/
 .banner-background {
-                clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 78% 98%, 51% 90%, 0 100%, 0 0);
-            }
+    clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 78% 98%, 51% 90%, 0 100%, 0 0);
+}
 
 
 
@@ -55,7 +66,7 @@
 }
 
 
-/*for navbar contents*/ 
+/*for navbar contents*/
 #navbarSupportedContent {
     margin-left: 80px;
 }
@@ -69,58 +80,44 @@
 
 
 
-/*category*/
-/*.dopost {
+/*css for the addpostmodal to display icon infron of selected category name*/ 
 
-
-    font-weight: bold!important;
-
-}
-
-.dopost{
-    font-size: 17px;
-    font-weight: bold!important;
-    color: transparent!important;  Make text transparent so the gradient shows through 
-    background-image: linear-gradient(45deg, #ffb3ba, #c49c6e, #bfbf76, #77b084, #ff7e74, #3b82f6, #c084fc, #db2777);
-
-    -webkit-background-clip: text;  Clip the background to text for WebKit-based browsers 
-    background-clip: text;  Clip the background to text for other browsers 
-    -webkit-text-stroke: 1px #ffd6fc;  Add an outline for WebKit-based browsers 
-    text-stroke: 1px #ffd6fc;  Add an outline for other browsers 
-    animation: gradientAnimation 30s linear infinite;
-    font-weight: bold;
-}
-#do-post:hover{
-    transform: scale(1.1);
-}
-.logo{
-    font-weight: bold!important;
-}
-
-
-#postcat{
-    width:300px;
-    height:35px;
-    background-color:white;
-    border:none;
-    font-weight:600;
-}
-
-
-
-category
-
-.custom-dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-.dropdown-display {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-
-*/
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .dropdown-display {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .dropdown-list {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .dropdown-list div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .dropdown-list div:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown-list img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    
