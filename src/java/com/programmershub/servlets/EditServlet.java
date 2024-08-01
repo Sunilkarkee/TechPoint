@@ -48,7 +48,7 @@ public class EditServlet extends HttpServlet {
         String userAbout = request.getParameter("user_about");
 
         Part filePart = request.getPart("image");
-        String newImageName = (filePart != null && !filePart.getSubmittedFileName().isEmpty()) ? filePart.getSubmittedFileName() : null;
+        String newImageName = ImageHandler.processImage(filePart, UPLOAD_DIRECTORY); // Use the helper method
 
         String oldImageName = user.getProfile(); // Get the old profile picture name
         if (newImageName != null) {
@@ -66,21 +66,12 @@ public class EditServlet extends HttpServlet {
             boolean isSuccess = dao.updateUser(user);
             if (isSuccess) {
                 if (newImageName != null) {
-                    File uploadDir = new File(UPLOAD_DIRECTORY);
-                    if (!uploadDir.exists()) {
-                        uploadDir.mkdirs();
+                    // Delete old image except default.png
+                    if (oldImageName != null && !oldImageName.equals("default.png")) {
+                        String oldImagePath = UPLOAD_DIRECTORY + File.separator + oldImageName;
+                        ImageHandler.deleteFile(oldImagePath);
                     }
-                    String path = UPLOAD_DIRECTORY + File.separator + newImageName;
-                    if (ImageHandler.saveFile(filePart.getInputStream(), path)) {
-                        // Delete old image except default.png
-                        if (oldImageName != null && !oldImageName.equals("default.png")) {
-                            String oldImagePath = UPLOAD_DIRECTORY + File.separator + oldImageName;
-                            ImageHandler.deleteFile(oldImagePath);
-                        }
-                        setSessionMessage(session, "Profile updated successfully.", "success", "alert-success");
-                    } else {
-                        setSessionMessage(session, "File upload failed.", "error", "alert-danger");
-                    }
+                    setSessionMessage(session, "Profile updated successfully.", "success", "alert-success");
                 } else {
                     setSessionMessage(session, "Profile updated successfully.", "success", "alert-success");
                 }
@@ -113,12 +104,7 @@ public class EditServlet extends HttpServlet {
             sendResponse(response, "Duplicate entry: " + e.getMessage());
         } else {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            sendResponse(response, "Internal server error: " + e.getMessage());
+            sendResponse(response, "Database error: " + e.getMessage());
         }
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Servlet for editing user information";
     }
 }

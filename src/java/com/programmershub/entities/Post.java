@@ -1,8 +1,6 @@
-
 package com.programmershub.entities;
 
-import java.security.Timestamp;
-
+import java.sql.Timestamp;
 
 public class Post {
     private int pId;
@@ -12,8 +10,22 @@ public class Post {
     private String pPic;
     private Timestamp pDate;
     private int catId;
+    private int userId;
 
-    public Post(int pId, String pTitle, String pContent, String pCode, String pPic, Timestamp pDate, int catId) {
+ 
+    public Post(String pTitle, String pContent, String pCode, String pPic,int catId, int userId) {
+  
+        this.pTitle = pTitle;
+        this.pContent = pContent;
+        this.pCode = pCode;
+        this.pPic = pPic;
+        
+        this.catId = catId;
+        this.userId = userId;
+    }
+
+    // Constructor with all fields
+    public Post(int pId, String pTitle, String pContent, String pCode, String pPic, Timestamp pDate, int catId, int userId) {
         this.pId = pId;
         this.pTitle = pTitle;
         this.pContent = pContent;
@@ -21,53 +33,55 @@ public class Post {
         this.pPic = pPic;
         this.pDate = pDate;
         this.catId = catId;
+        this.userId = userId;
     }
 
-    public int getpId() {
+    // Getters and Setters
+    public int getPId() {
         return pId;
     }
 
-    public void setpId(int pId) {
+    public void setPId(int pId) {
         this.pId = pId;
     }
 
-    public String getpTitle() {
+    public String getPTitle() {
         return pTitle;
     }
 
-    public void setpTitle(String pTitle) {
+    public void setPTitle(String pTitle) {
         this.pTitle = pTitle;
     }
 
-    public String getpContent() {
+    public String getPContent() {
         return pContent;
     }
 
-    public void setpContent(String pContent) {
+    public void setPContent(String pContent) {
         this.pContent = pContent;
     }
 
-    public String getpCode() {
+    public String getPCode() {
         return pCode;
     }
 
-    public void setpCode(String pCode) {
+    public void setPCode(String pCode) {
         this.pCode = pCode;
     }
 
-    public String getpPic() {
+    public String getPPic() {
         return pPic;
     }
 
-    public void setpPic(String pPic) {
+    public void setPPic(String pPic) {
         this.pPic = pPic;
     }
 
-    public Timestamp getpDate() {
+    public Timestamp getPDate() {
         return pDate;
     }
 
-    public void setpDate(Timestamp pDate) {
+    public void setPDate(Timestamp pDate) {
         this.pDate = pDate;
     }
 
@@ -79,20 +93,25 @@ public class Post {
         this.catId = catId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Post{");
-        sb.append("pId=").append(pId);
-        sb.append(", pTitle=").append(pTitle);
-        sb.append(", pContent=").append(pContent);
-        sb.append(", pCode=").append(pCode);
-        sb.append(", pPic=").append(pPic);
-        sb.append(", pDate=").append(pDate);
-        sb.append(", catId=").append(catId);
-        sb.append('}');
-        return sb.toString();
+        return "Post{" +
+                "pId=" + pId +
+                ", pTitle='" + pTitle + '\'' +
+                ", pContent='" + pContent + '\'' +
+                ", pCode='" + pCode + '\'' +
+                ", pPic='" + pPic + '\'' +
+                ", pDate=" + pDate +
+                ", catId=" + catId +
+                ", userId=" + userId +
+                '}';
     }
-    
-    
 }

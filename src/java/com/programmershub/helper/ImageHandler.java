@@ -4,20 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import jakarta.servlet.http.Part;
 
 public class ImageHandler {
-
-    // Deletes the file at the specified path
-    public static boolean deleteFile(String path) {
-        boolean isDeleted = false;
-        try {
-            File file = new File(path);
-            isDeleted = file.delete();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return isDeleted;
-    }
 
     // Saves the file from the InputStream to the specified path
     public static boolean saveFile(InputStream is, String path) {
@@ -47,5 +36,37 @@ public class ImageHandler {
             }
         }
         return isSaved;
+    }
+
+    // Processes the uploaded image
+    public static String processImage(Part filePart, String uploadDirectory) throws IOException {
+        if (filePart != null && !filePart.getSubmittedFileName().isEmpty()) {
+            String fileName = filePart.getSubmittedFileName();
+            File uploadDir = new File(uploadDirectory);
+
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
+            }
+
+            String filePath = uploadDirectory + File.separator + fileName;
+            boolean isFileSaved = saveFile(filePart.getInputStream(), filePath);
+
+            if (isFileSaved) {
+                return fileName;
+            }
+        }
+        return null;
+    }
+    
+    // Deletes the file at the specified path
+    public static boolean deleteFile(String path) {
+        boolean isDeleted = false;
+        try {
+            File file = new File(path);
+            isDeleted = file.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isDeleted;
     }
 }
