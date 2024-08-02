@@ -28,7 +28,7 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
                             <div class="card-header text-center primary-background text-white">
-                                <h5>Provide your Details...</h5>
+                                <h5><b>Provide Your Details</b></h5>
                             </div>
 
                             <div class="card-body">

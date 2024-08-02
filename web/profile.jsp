@@ -28,7 +28,7 @@
         <!-- Custom CSS -->
 
         <link href="css/profile.css" rel="stylesheet" type="text/css"/>
-        
+
 
     </head>
     <body>
@@ -69,14 +69,15 @@
                     </ul>
 
 
-
-
-
                     <div id="userloginout">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link navbar-hover" href="#!" data-bs-toggle="modal" data-bs-target="#profile-modal">
+
+
                                     <i class="fa fa-user-circle"></i> <%= user.getName()%>
+
+
                                 </a>
                             </li>
 
@@ -127,27 +128,71 @@
 
 
                     <div class="modal-body">
-                        <div class="container text-center">
+                        <div class="container text-center mb-3">
                             <img id="profileimg" src="profilepics/<%= user.getProfile()%>" alt="Profile Picture">
                             <br>
                             <h5 class="modal-title" id="staticBackdropLabel"><%= user.getName()%></h5>  
 
+                        </div>
+                        <div id="profile-details">
 
-                            <div id="profile-details">
+
+                            <table class="table table-hover">
+                                <tr>
+                                    <th scope="row">Name</th> 
+                                    <td><%= user.getName()%></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th> 
+                                    <td><%= user.getEmail()%></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Phone</th> 
+                                    <td><%= user.getPhone_number()%></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Gender</th> 
+                                    <td><%= user.getGender().toUpperCase()%></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Status</th> 
+                                    <td><%= user.getAbout()%></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Registered on</th> 
+                                    <td><%= user.getCreated_at().toString()%></td>
+                                </tr>
+                            </table>
+                        </div>
 
 
+
+                        <!-- Profile Editing Form -->
+
+
+                        <div id="profile-edit" style="display:none">
+                            <h3 class="mt-2">Edit your info here</h3>
+                            <form id="editForm" action="EditServlet" method="post" enctype="multipart/form-data">
                                 <table class="table table-hover">
                                     <tr>
+                                        <th scope="row">ID</th> 
+                                        <td><%= user.getId()%></td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">Name</th> 
-                                        <td><%= user.getName()%></td>
+                                        <td><input class="form-control" type="text" name="user_name" value="<%= user.getName()%>"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Email</th> 
-                                        <td><%= user.getEmail()%></td>
+                                        <td><input class="form-control" type="email" name="user_email" value="<%= user.getEmail()%>"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Phone</th> 
-                                        <td><%= user.getPhone_number()%></td>
+                                        <td><input class="form-control" type="tel" name="user_phone" value="<%= user.getPhone_number()%>"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Password</th> 
+                                        <td><input class="form-control" type="password" name="user_pwd" value="<%= user.getPassword()%>"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Gender</th> 
@@ -155,82 +200,38 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Status</th> 
-                                        <td><%= user.getAbout()%></td>
+                                        <td><textarea rows="5" class="form-control" name="user_about"><%= user.getAbout()%></textarea></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Registered on</th> 
-                                        <td><%= user.getCreated_at().toString()%></td>
+                                        <th scope="row">New Profile Picture</th> 
+                                        <td><input class="form-control" type="file" name="image"></td>
                                     </tr>
-                                </table>
-                            </div>
-
-
-
-                            <!-- Profile Editing Form -->
-
-
-                            <div id="profile-edit" style="display:none">
-                                <h3 class="mt-2">Edit your info here</h3>
-                                <form id="editForm" action="EditServlet" method="post" enctype="multipart/form-data">
-                                    <table class="table table-hover">
-                                        <tr>
-                                            <th scope="row">ID</th> 
-                                            <td><%= user.getId()%></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Name</th> 
-                                            <td><input class="form-control" type="text" name="user_name" value="<%= user.getName()%>"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Email</th> 
-                                            <td><input class="form-control" type="email" name="user_email" value="<%= user.getEmail()%>"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Phone</th> 
-                                            <td><input class="form-control" type="tel" name="user_phone" value="<%= user.getPhone_number()%>"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Password</th> 
-                                            <td><input class="form-control" type="password" name="user_pwd" value="<%= user.getPassword()%>"></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Gender</th> 
-                                            <td><%= user.getGender().toUpperCase()%></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Status</th> 
-                                            <td><textarea rows="5" class="form-control" name="user_about"><%= user.getAbout()%></textarea></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">New Profile Picture</th> 
-                                            <td><input class="form-control" type="file" name="image"></td>
-                                        </tr>
-                                    </table> 
-                                    <div class="container">
-                                        <button type="submit" class="btn btn-outline-primary">Save</button>
-                                    </div>
-                                </form>
-                            </div>
+                                </table> 
+                                <div class="container">
+                                    <button type="submit" class="btn btn-outline-primary">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="edit-btn" type="button" class="btn btn-primary">Edit</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="edit-btn" type="button" class="btn btn-primary">Edit</button>
                 </div>
             </div>
-        </div> 
+        </div>
+    </div> 
 
 
-        <%@include file="addpostmodal.jsp" %>
+    <%@include file="addpostmodal.jsp" %>
 
-        <!-- JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-        <script src="JS/profile.js"></script>
-        <script src="JS/addpostmodal.js"></script>
+    <script src="JS/profile.js"></script>
+    <script src="JS/addpostmodal.js"></script>
 
-    </body>
+</body>
 </html>

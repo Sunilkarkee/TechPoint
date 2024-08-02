@@ -31,17 +31,21 @@ html{
 
 
 
+
+
 /* Ensure the items (profile and logout) are highlighted and clear */
 #userloginout .navbar-nav .nav-item .nav-link {
     color: #ffffff;
     font-weight: bold;
     text-decoration: none;
     font-size: 15px !important;
+
 }
 
 #userloginout .navbar-nav .nav-item {
     margin-right: 20px;
     margin-bottom: 0; /* Add this line to ensure no extra space at the bottom */
+
     padding-bottom: 0; /* Add this line to ensure no extra padding at the bottom */
 }
 
@@ -59,6 +63,8 @@ html{
     text-decoration: none;
 }
 
+/*for logout and login link*/
+
 
 
 /*profile image*/
@@ -66,6 +72,7 @@ html{
     height: 120px;
     width: 120px;
     border-radius: 50%;
+    
 }
 
 
@@ -85,45 +92,49 @@ html{
 
 
 
-/*css for the addpostmodal to display icon infron of selected category name*/ 
+/*css for the addpostmodal to display icon infron of selected category name*/
 
-        .custom-dropdown {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-        .dropdown-display {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            background-color: #fff;
-            cursor: pointer;
-        }
-        .dropdown-list {
-            display: none;
-            position: absolute;
-            z-index: 1;
-            background-color: #fff;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            width: 100%;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .dropdown-list div {
-            padding: 10px;
-            cursor: pointer;
-        }
-        .dropdown-list div:hover {
-            background-color: #f1f1f1;
-        }
-        .dropdown-list img {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-        }
-    
-        
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.dropdown-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.dropdown-list {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.dropdown-list div {
+    padding: 10px;
+    cursor: pointer;
+}
+.dropdown-list div:hover {
+    background-color: #f1f1f1;
+}
+.dropdown-list img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+
+
+/*navbar profile pic Display*/
+
+
