@@ -40,8 +40,8 @@ public class ImageHandler {
 
     // Processes the uploaded image
     public static String processImage(Part filePart, String uploadDirectory) throws IOException {
-        if (filePart != null && !filePart.getSubmittedFileName().isEmpty()) {
-            String fileName = filePart.getSubmittedFileName();
+        if (filePart != null && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty()) {
+            String fileName = filePart.getSubmittedFileName(); // Get the original file name
             File uploadDir = new File(uploadDirectory);
 
             if (!uploadDir.exists()) {
@@ -52,12 +52,12 @@ public class ImageHandler {
             boolean isFileSaved = saveFile(filePart.getInputStream(), filePath);
 
             if (isFileSaved) {
-                return fileName;
+                return fileName; // Return the original file name
             }
         }
         return null;
     }
-    
+
     // Deletes the file at the specified path
     public static boolean deleteFile(String path) {
         boolean isDeleted = false;

@@ -1,7 +1,5 @@
 package com.programmershub.daos;
 
-
-
 import com.programmershub.entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +9,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class UserDao {
 
-   
     private final Connection con;
 
     public UserDao(Connection con) {
@@ -27,6 +22,7 @@ public class UserDao {
         String query = "INSERT INTO users (NAME, EMAIL, PASSWORD, PHONE_NUMBER, GENDER, ABOUT, PROFILE) VALUES (?, ?, ?, ?, ?, ?, ?)";
         return executeUpdate(query, user.getName(), user.getEmail(), user.getPassword(),
                 user.getPhone_number(), user.getGender(), user.getAbout(), user.getProfile());
+
     }
 
     // Method to update user information
@@ -66,7 +62,7 @@ public class UserDao {
         String query = "SELECT * FROM users WHERE PHONE_NUMBER=? AND PASSWORD=?";
         return getUser(query, phoneNumber, password);
     }
-    
+
     // Method to get user by phone or email and password
     public User getUserByPhoneOrEmailAndPassword(String identifier, String password) {
         String query = "SELECT * FROM users WHERE (EMAIL=? OR PHONE_NUMBER=?) AND PASSWORD=?";
@@ -83,7 +79,7 @@ public class UserDao {
             String sqlState = e.getSQLState();
             int errorCode = e.getErrorCode();
             String message = e.getMessage();
-            
+
             // Check for duplicate entry error
             if ("23000".equals(sqlState) && errorCode == 1062) {
                 if (message.contains("EMAIL")) {
@@ -94,7 +90,6 @@ public class UserDao {
                     throw new SQLException("Duplicate entry.", e);
                 }
             } else {
-                
                 throw e;
             }
         }
@@ -139,16 +134,16 @@ public class UserDao {
     // Helper method to map ResultSet to User object
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         User user = new User();
-        user.setId(rs.getInt("ID")); 
-        user.setName(rs.getString("NAME")); 
-        user.setEmail(rs.getString("EMAIL")); 
-        user.setPassword(rs.getString("PASSWORD")); 
-        user.setGender(rs.getString("GENDER")); 
-        user.setPhone_number(rs.getString("PHONE_NUMBER")); 
-        user.setAbout(rs.getString("ABOUT")); 
-        user.setProfile(rs.getString("PROFILE")); 
-        user.setCreated_at(rs.getTimestamp("created_at")); 
-        user.setUpdated_at(rs.getTimestamp("Updated_At")); 
+        user.setId(rs.getInt("ID"));
+        user.setName(rs.getString("NAME"));
+        user.setEmail(rs.getString("EMAIL"));
+        user.setPassword(rs.getString("PASSWORD"));
+        user.setGender(rs.getString("GENDER"));
+        user.setPhone_number(rs.getString("PHONE_NUMBER"));
+        user.setAbout(rs.getString("ABOUT"));
+        user.setProfile(rs.getString("PROFILE"));
+        user.setCreated_at(rs.getTimestamp("created_at"));
+        user.setUpdated_at(rs.getTimestamp("Updated_At"));
         return user;
     }
 }

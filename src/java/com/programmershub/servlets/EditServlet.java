@@ -46,8 +46,9 @@ public class EditServlet extends HttpServlet {
         String userNumber = request.getParameter("user_phone");
         String userPassword = request.getParameter("user_pwd");
         String userAbout = request.getParameter("user_about");
-
+        
         Part filePart = request.getPart("image");
+        
         String newImageName = ImageHandler.processImage(filePart, UPLOAD_DIRECTORY); // Use the helper method
 
         String oldImageName = user.getProfile(); // Get the old profile picture name

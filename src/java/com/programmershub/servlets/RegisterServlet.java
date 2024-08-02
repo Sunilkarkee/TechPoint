@@ -2,7 +2,9 @@ package com.programmershub.servlets;
 
 import com.programmershub.daos.UserDao;
 import com.programmershub.entities.User;
+import com.programmershub.helper.ImageHandler;
 import com.programmershub.helper.PgmDbConnector;
+import com.programmershub.helper.ValidationHelper;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,16 +12,27 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
+@MultipartConfig
 public class RegisterServlet extends HttpServlet {
+
+    private static final String UPLOAD_DIRECTORY = "C:\\Users\\Suneel\\Desktop\\JAVA PROJECTS\\ProgrammersHub\\web\\profilepics";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
+           if (request.getContentType() == null || !request.getContentType().contains("multipart/form-data")) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            sendResponse(response, "Request must be of type multipart/form-data");
+            return;
+        }
+           
         String name = request.getParameter("user_name");
         String email = request.getParameter("user_email");
         String password = request.getParameter("user_password");
@@ -27,34 +40,26 @@ public class RegisterServlet extends HttpServlet {
         String phone = request.getParameter("phone_number");
         String about = request.getParameter("about");
 
-        // Validation for required fields and email format
-        if (name == null || name.isEmpty() || email == null || email.isEmpty()
-                || password == null || password.isEmpty() || phone == null || phone.isEmpty()) {
-            sendResponse(response, "Please fill out all required fields.");
+        if (!ValidationHelper.validateRegistrationForm(name, email, password, phone, gender, response)) {
             return;
         }
-
-        // Validate email format
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}$";
-        if (!email.matches(emailRegex)) {
-            sendResponse(response, "Invalid email format.");
-            return;
+        
+        // Handle profile picture upload
+        Part part = request.getPart("profile_pic");
+        String fileName = "default.png"; // Default value
+        
+          if (part != null && part.getSubmittedFileName() != null && !part.getSubmittedFileName().isEmpty()) {
+            String uploadedFileName = ImageHandler.processImage(part, UPLOAD_DIRECTORY);
+            if (uploadedFileName != null) {
+                fileName = uploadedFileName;
+            }
         }
-
-        // Validate password complexity
-        if (password.length() < 8 || !password.matches(".*[A-Z].*")
-                || !password.matches(".*[a-z].*") || !password.matches(".*\\d.*")) {
-            sendResponse(response, "Password must be at least 8 characters long and include uppercase, lowercase, and numeric characters.");
-            return;
-        }
-
-        if (gender == null || gender.equals("none")) {
-            sendResponse(response, "Please select Your Gender");
-            return;
-        }
-
         // Create User object
-        User user = new User(name, email, password, gender, phone, about);
+        User user = new User(name, email, password, gender, phone, about, fileName);
+         System.out.println("User to be saved: " + user);
+
+        // Debug statement to check User object
+        System.out.println("User to be saved: " + user);
 
         // Create UserDao object and attempt to save the user
         try (Connection con = PgmDbConnector.makeConnection()) {
@@ -79,8 +84,8 @@ public class RegisterServlet extends HttpServlet {
             sendResponse(response, "Internal server error: " + e.getMessage());
         }
     }
-// Helper method to send response
 
+    // Helper method to send response
     private void sendResponse(HttpServletResponse response, String message) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -102,6 +107,6 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "User Registration Servlet";
+        return "Short description";
     }
 }

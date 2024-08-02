@@ -15,14 +15,32 @@ public class User {
     private Timestamp updated_at;
 
     // Constructors
-    public User(String name, String email, String password, String gender, String phone_number, String about) {
+
+    public User(int id, String name, String email, String password, String gender, String phone_number, String about, String Profile, Timestamp created_at, Timestamp updated_at) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.gender = gender;
         this.phone_number = phone_number;
         this.about = about;
+        this.Profile = Profile;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
+
+    public User(String name, String email, String password, String gender, String phone_number, String about, String Profile) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.gender = gender;
+        this.phone_number = phone_number;
+        this.about = about;
+        this.Profile = Profile;
+    }
+    
+    
+    
 
     public User() {
         // Default constructor
@@ -119,6 +137,7 @@ public class User {
                 ", gender='" + gender + '\'' +
                 ", phone_number='" + phone_number + '\'' +
                 ", about='" + about + '\'' +
+                ", profile='" + Profile + '\'' +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
                 '}';

@@ -96,3 +96,13 @@ html{
     font-size: 16px;
     padding: 0px 25px;
 }
+
+
+/*//registerpage image -profile pics*/
+
+#profile-pic-preview{
+    border:2px solid #36454F;
+    border-radius: 100%;
+    width: 160px; height: 160px; 
+    margin-top: 5px;
+}

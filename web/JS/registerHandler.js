@@ -1,6 +1,35 @@
 /* global Swal */
 
 $(document).ready(function () {
+    
+    //image preview functionality
+    
+     $('#profile-pic-preview').attr('src', 'Images/default.png');
+
+    // Image preview functionality
+    $('#profile_pic').on('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $('#profile-pic-preview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            $('#profile-pic-preview').attr('src', 'Images/default.png');
+        }
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     $('#reg-form').on('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
 
@@ -36,7 +65,15 @@ $(document).ready(function () {
         }
 
         // Create FormData object from the form
-        let form = $(this).serialize();
+        
+        const formData = new FormData();
+        formData.append('user_name', $('#username').val().trim());
+        formData.append('user_email', $('#email').val().trim());
+        formData.append('user_password', $('#password').val().trim());
+        formData.append('gender', $('#gender').val());
+        formData.append('phone_number', $('#phone').val().trim());
+        formData.append('about', $('#about').val().trim());
+        formData.append('profile_pic', $('#profile_pic')[0].files[0]);
 
         // Hide the submit button and show the loader
         $('#custom-button').hide();
@@ -45,7 +82,11 @@ $(document).ready(function () {
         $.ajax({
             url: "RegisterServlet", // Servlet endpoint
             type: 'POST',
-            data: form, // Pass FormData object as the data to be sent
+            data: formData, // Pass FormData object as the data to be sent
+
+            processData: false,
+            contentType: false,
+
             success: function (response) {
                 console.log('Form submitted successfully.');
                 console.log(response);
