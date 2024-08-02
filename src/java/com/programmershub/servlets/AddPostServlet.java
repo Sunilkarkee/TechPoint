@@ -16,8 +16,6 @@ import com.programmershub.helper.PgmDbConnector;
 import com.programmershub.helper.ImageHandler;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @MultipartConfig
 public class AddPostServlet extends HttpServlet {
@@ -31,17 +29,27 @@ public class AddPostServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             // Retrieve form parameters
-            int catId = Integer.parseInt(request.getParameter("catId"));
+            String catIdStr = request.getParameter("catId");
             String pTitle = request.getParameter("title");
             String pContent = request.getParameter("content");
             String pCode = request.getParameter("code");
 
-            Part part = request.getPart("pic");
-            String pPicName = ImageHandler.processImage(part, UPLOAD_DIRECTORY); // Use the helper method
-
-            if (pPicName == null) {
-                out.println("Failed to save the image");
+            int catId = 0;
+            try {
+                catId = Integer.parseInt(catIdStr);
+            } catch (NumberFormatException e) {
+                sendResponse(response, "Invalid category ID");
                 return;
+            }
+
+            Part part = request.getPart("pic");
+            String pPicName = null;
+            if (part != null && part.getSubmittedFileName() != null && !part.getSubmittedFileName().isEmpty()) {
+                pPicName = ImageHandler.processImage(part, UPLOAD_DIRECTORY);
+                if (pPicName == null) {
+                    sendResponse(response, "Failed to save the image");
+                    return;
+                }
             }
 
             // Getting current user Id from session
@@ -56,17 +64,23 @@ public class AddPostServlet extends HttpServlet {
                 PostDao postDao = new PostDao(con);
 
                 if (postDao.savePost(post)) {
-                    out.println("Post added successfully");
+                    sendResponse(response, "Post added successfully");
                 } else {
-                    out.println("Failed to add post");
+                    sendResponse(response, "Failed to add post");
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AddPostServlet.class.getName()).log(Level.SEVERE, null, ex);
-                out.println("An error occurred while saving the post: " + ex.getMessage());
+                sendResponse(response, "An error occurred while saving the post: " + ex.getMessage());
             }
         } catch (Exception e) {
-            Logger.getLogger(AddPostServlet.class.getName()).log(Level.SEVERE, null, e);
-            response.getWriter().println("An error occurred: " + e.getMessage());
+            sendResponse(response, "An error occurred: " + e.getMessage());
+        }
+    }
+
+    // Helper method to send response
+    private void sendResponse(HttpServletResponse response, String message) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println(message);
         }
     }
 
