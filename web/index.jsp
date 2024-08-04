@@ -30,7 +30,7 @@
         <div class="banner-background">
             <div class="container-fluid bg-primary text-light py-5">
                 <div class="custom-left-margin">
-                    <h4 class="display-4 fade-in"><strong>Welcome To TechPoint</strong></h4>
+                    <h5 class="display-4 fade-in"><strong>Welcome To TechPoint</strong></h5>
                     <p style="text-align: justify;">A programming language is a system of notation for writing computer programs.
                         Programming languages are described in terms of their syntax (form) and semantics (meaning), usually defined by a formal language. Languages usually provide features such as a type system, variables and mechanisms for error handling. An implementation of a programming language is required in order to execute programs, namely a compiler or an interpreter. An interpreter directly executes the source code, while a compiler produces an executable program.
                     </p>

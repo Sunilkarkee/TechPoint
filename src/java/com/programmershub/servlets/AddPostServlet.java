@@ -20,7 +20,7 @@ import java.sql.SQLException;
 @MultipartConfig
 public class AddPostServlet extends HttpServlet {
 
-    private static final String UPLOAD_DIRECTORY = "C:\\Users\\Suneel\\Desktop\\JAVA PROJECTS\\ProgrammersHub\\web\\postpics";
+    private static final String UPLOAD_DIRECTORY = "C:\\Users\\Suneel\\Desktop\\JAVA PROJECTS\\ProgrammersHub\\web\\blogsPics";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

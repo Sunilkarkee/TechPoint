@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
         identifier = identifier.trim();
         password = password.trim();
 
-        LOGGER.log(Level.INFO, "Login attempt with identifier: {0} from IP: {1}", new Object[]{identifier, request.getRemoteAddr()});
 
         try (Connection con = PgmDbConnector.makeConnection()) {
             if (con == null) {
@@ -50,7 +49,6 @@ public class LoginServlet extends HttpServlet {
             User u = dao.getUserByPhoneOrEmailAndPassword(identifier, password);
 
             if (u != null) {
-                LOGGER.log(Level.INFO, "Login successful for identifier: {0}", identifier);
                 HttpSession session = request.getSession();
                 session.setAttribute("currentUser", u);
                 response.sendRedirect("profile.jsp");

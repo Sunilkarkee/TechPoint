@@ -110,8 +110,11 @@
 
 
 
-
-
+        <!--categories modal imported-->
+        
+         <%@include file="displayCategories.jsp" %>
+        
+        
         <!-- Profile Modal -->
 
         <div class="modal fade" id="profile-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -222,6 +225,8 @@
         </div> 
 
 
+        <!--add-post modal imported-->                                
+                                        
         <%@include file="addpostmodal.jsp" %>
 
         <!-- JavaScript -->

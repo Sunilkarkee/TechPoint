@@ -18,7 +18,7 @@
                             <option selected disabled value="">---select category---</option>
                             <%
                                 PostDao postd = new PostDao(PgmDbConnector.makeConnection());
-                                List<Category> list = postd.getCategories();
+                                List<Category> list = postd.getAllCategories();
                                 for (Category cat : list) {
                             %>
                             <option value="<%= cat.getCid()%>" data-name="<%= cat.getName()%>" data-img="catpics/<%= cat.getPhoto()%>"><%= cat.getName()%></option>
