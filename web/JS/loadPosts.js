@@ -3,46 +3,43 @@ $(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     const catId = urlParams.get('cid') || 0;
+    const myPosts = urlParams.get('myPosts') !== null;
 
     console.log("Current catId:", catId);
+    console.log("Is 'My Posts' selected?", myPosts);
 
-    // Set the active link based on the category ID
+    // Set the active link and show/hide badges
     $(".c-link").each(function() {
         const linkCatId = $(this).data('cat-id');
-        console.log("linkCatId:", linkCatId);
-        if (linkCatId == catId) {
-            $(this).addClass('active');
-            console.log("Match found and 'active' class added.");
-        } else {
-            $(this).removeClass('active');
-        }
+        const isActive = (linkCatId == catId) || (linkCatId === "myPosts" && myPosts) || (linkCatId === "0");
+
+        $(this).toggleClass('active', isActive);
+        $(this).find('.post-count-badge').toggle(isActive);
     });
 
-    // If there's a category ID, use it; otherwise, default to "All Posts"
-    const initialElement = catId ? $(`.c-link[data-cat-id='${catId}']`)[0] : $('.c-link')[0];
-    getPosts(catId, initialElement);
+    const initialElement = myPosts 
+        ? $(`.c-link[data-cat-id='myPosts']`)[0] 
+        : $(`.c-link[data-cat-id='${catId || 0}']`)[0];
 
-    // Function to get posts
-    function getPosts(catId, element) {
+    getPosts(catId, myPosts, initialElement);
+
+    function getPosts(catId, myPosts, element) {
         $(".c-link").removeClass('active');
-
-        // Link becomes active immediately on click
         $(element).addClass("active");
 
-        history.pushState(null, '', `?cid=${catId}`);
+        const queryString = myPosts ? `?myPosts=true` : `?cid=${catId}`;
+        history.pushState(null, '', queryString);
 
         $("#loader").show();
-        $("#posts-container").html("");
+        $("#posts-container").empty();
 
         $.ajax({
             url: "loadPosts.jsp",
-            data: {cid: catId},
-            success: function (data, textStatus, jqXHR) {
-                console.log("AJAX call successful. Data received:");
+            data: { cid: catId, myPosts: myPosts },
+            success: function (data) {
+                console.log("AJAX call successful. Data received:", data);
                 $("#loader").hide();
-                $("#posts-container").show();
-                $("#posts-container").html(data);
-                console.log("Content loaded into #posts-container");
+                $("#posts-container").html(data).show();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error("Error loading posts:", textStatus, errorThrown);

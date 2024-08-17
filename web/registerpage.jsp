@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
-                            <div class="card-header text-center primary-background text-white">
+                            <div class="card-header text-center  cstm-clr text-white">
                                 <h5><b>Provide Your Details</b></h5>
                             </div>
 
@@ -101,7 +101,7 @@
                                     </div>
 
                                     <div class="container text-center">
-                                        <button id="custom-button" type="submit" class="btn btn-primary">Submit</button>
+                                        <button id="custom-button" type="submit" class="btn cstm-clr text-white btn-lg">Submit</button>
                                     </div>
 
 

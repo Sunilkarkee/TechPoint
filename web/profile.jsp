@@ -1,5 +1,5 @@
-<%@page import="com.programmershub.entities.Messages"%>
-<%@page import="com.programmershub.entities.User"%>
+<%@page import="com.techpoint.entities.Messages"%>
+<%@page import="com.techpoint.entities.User"%>
 <%
     // Check if user is logged in
     User user = (User) session.getAttribute("currentUser");
@@ -9,7 +9,9 @@
     }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,7 +30,10 @@
         <!-- Custom CSS -->
 
         <link href="css/profile.css" rel="stylesheet" type="text/css"/>
-        
+
+        <!--for categories.jsp-->
+        <link href="css/categoriesDisplay.css" rel="stylesheet" type="text/css"/>
+
 
     </head>
     <body>
@@ -93,28 +98,27 @@
         <!--end of nav bar-->
 
 
-
-
-        <!-- Display Messages -->
-        <%
-            Messages m = (Messages) session.getAttribute("msg");
-            if (m != null) {
-        %>
-        <div id="alertMessage" class="alert <%= m.getCssClass()%>" role="alert">
-            <%= m.getContent()%>
-        </div>
-        <%
-                session.removeAttribute("msg");
-            }
-        %>
-
+        <%-- 
+             <!-- Display Messages -->
+             <%
+                 Messages m = (Messages) session.getAttribute("msg");
+                 if (m != null) {
+             %>
+             <div id="alertMessage" class="alert <%= m.getCssClass()%>" role="alert">
+                 <%= m.getContent()%>
+             </div>
+             <%
+                     session.removeAttribute("msg");
+                 }
+             %>
+        --%>
 
 
         <!--categories modal imported-->
-        
-         <%@include file="displayCategories.jsp" %>
-        
-        
+
+        <%@include file="displayCategories.jsp" %>
+
+
         <!-- Profile Modal -->
 
         <div class="modal fade" id="profile-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -123,7 +127,7 @@
 
                 <div class="modal-content">
 
-                    <div class="modal-header text-center primary-background text-white">
+                    <div class="modal-header text-center nav-background text-white">
                         <h5 class="modal-title" id="staticBackdropLabel">TechPoint</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -210,7 +214,7 @@
                                         </tr>
                                     </table> 
                                     <div class="container">
-                                        <button type="submit" class="btn btn-outline-primary">Save</button>
+                                        <button type="submit" class="btn btn-outline nav-background text-white">Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -218,7 +222,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="edit-btn" type="button" class="btn btn-primary">Edit</button>
+                        <button id="edit-btn" type="button" class="btn nav-background text-white">Edit</button>
                     </div>
                 </div>
             </div>
@@ -226,7 +230,7 @@
 
 
         <!--add-post modal imported-->                                
-                                        
+
         <%@include file="addpostmodal.jsp" %>
 
         <!-- JavaScript -->
@@ -236,6 +240,10 @@
 
         <script src="JS/profile.js"></script>
         <script src="JS/addpostmodal.js"></script>
+        <script src="JS/loadPosts.js"></script>
+        <script src="JS/reactionsCount.js"></script>
+
+
 
     </body>
 </html>

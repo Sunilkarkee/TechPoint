@@ -1,5 +1,3 @@
-
-
 /* global Swal */
 
 $(document).ready(function () {
@@ -20,7 +18,7 @@ $(document).ready(function () {
     });
 
     $("#editForm").on('submit', function (event) {
-       event.preventDefault();
+        event.preventDefault();
 
         // Use AJAX to submit the form
         $.ajax({
@@ -33,14 +31,14 @@ $(document).ready(function () {
                 // Handle success response
                 if (response.includes('Update successful.')) {
                     $('#editForm')[0].reset();
-                     
+
                     Swal.fire({
                         title: "Congrats!",
                         text: "Update Successful.",
                         icon: "success"
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location = "profile.jsp"; // Redirect if needed
+                        window.location.href='profile.jsp';
                         }
                     });
                 } else {
@@ -62,4 +60,3 @@ $(document).ready(function () {
         });
     });
 });
-       

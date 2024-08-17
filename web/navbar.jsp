@@ -31,7 +31,7 @@
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button type="button" class="btn btn-primary btn-outline-light btn-hover">Search</button>
+                <button type="button" class="btn nav-background btn-outline-light btn-hover">Search</button>
             </form>
         </div>
     </div>

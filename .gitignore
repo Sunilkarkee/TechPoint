@@ -1,6 +1,5 @@
 build/
 nbproject/
-web/profilepics/
-/dist/
 
-web/blogpics/
+/dist/
+/web/profilepic/

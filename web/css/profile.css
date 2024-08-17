@@ -1,4 +1,7 @@
-
+    body {
+        background: url(../Images/bg.png) no-repeat center center fixed;
+        background-size: cover;
+    }
 
 html{
     font-family:
@@ -12,14 +15,16 @@ html{
 
 }
 
-
+.cstm-clr{
+    background-color: #1e6cc9;
+}
 
 .nav-background{
-    background-color: #304ffe;
+    background-color: #013d85!important;
 
 }
 .primary-background{
-    background-color:#3D5AFE!important;
+    background-color:#a06d9a!important ;
 
 }
 
@@ -137,4 +142,17 @@ html{
 
 /*navbar profile pic Display*/
 
+/*like and dislike button hover effect*/
+  .b-link {
+        transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out; 
+        
+    }
 
+    .b-link:hover {
+        transform: scale(1.1); 
+        color: white; 
+    }
+
+    .b-link i {
+        margin-right: 5px; 
+    }

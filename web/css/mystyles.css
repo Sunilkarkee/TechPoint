@@ -12,12 +12,17 @@ html{
         sans-serif;
 
 }
+
+.cstm-clr{
+    background-color: #1e6cc9!important;
+}
+
 .nav-background{
-    background-color: #304ffe;
+    background-color: #013d85!important;
 
 }
 .primary-background{
-    background-color:#3D5AFE!important;
+    background-color:#5f73bc!important ;
 
 }
  .banner-background {
@@ -50,6 +55,10 @@ html{
 
 
 
+    body {
+        background: url(../Images/bg2.png) no-repeat center center fixed;
+        background-size: cover;
+    }
 
 
 
@@ -72,7 +81,7 @@ html{
 /*login and signup page*/
 #passwordEye {
     cursor: pointer;
-    color: #007bff; /* Default color */
+    color:  #042d61; /* Default color */
     font-size: 18px; /* Adjust size as needed */
     transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size change */
 }
@@ -106,4 +115,18 @@ html{
     border-radius: 50%;
     width: 160px; height: 160px; 
     margin-top: 5px;
+}
+
+
+/*for backgroung paragraph*/
+ .large-text{
+    
+    text-align: justify;
+    font-size: 20px!important;
+}
+
+/*container for cards*/
+.custom-container {
+    margin-left: 40px;
+    margin-right: 40px;
 }

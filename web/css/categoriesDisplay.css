@@ -15,7 +15,7 @@
 .column2 {
     flex: 0 0 75%;
     max-width: 75%;
-     /* Space between columns */
+    /* Space between columns */
 }
 
 
@@ -58,7 +58,7 @@
 
 /* For blog pics */
 .fixed-size-img {
-    width: 100%; 
+    width: 100%;
     height: auto; /* Maintain aspect ratio */
     object-fit: cover;
 }
@@ -77,10 +77,14 @@
     color: greenyellow;
 }
 
+.c-link.active{
+
+    background-color: #1e6cc9!important;
+}
 /* To disable hover effect on selected link */
 .list-group-item.active:hover {
-    background-color: #007bff; 
-    color: inherit; 
+    background-color: #007bff;
+    color: inherit;
 }
 
 /* Responsive columns for cards */
@@ -96,8 +100,8 @@
         flex: 0 0 50%;
         max-width: 50%;
     }
-    
-        
+
+
 }
 
 @media (max-width: 767px) { /* Small screens */
@@ -105,7 +109,7 @@
         flex: 0 0 100%;
         max-width: 100%;
     }
-    
+
     /* Adjustments for mobile screens */
     .column1, .column2 {
         flex: 0 0 100%;
@@ -113,24 +117,55 @@
         padding-left: 5%; /* Equal padding on both sides */
         padding-right: 5%; /* Equal padding on both sides */
     }
-    
+
     .list-group-item {
-        font-size: 14px; /* Reduce font size for better fit */
-        padding: 8px 12px; /* Adjust padding */
+        font-size: 14px;
+        padding: 8px 12px;
     }
-    
+
     .catg-img {
         height: 16px;
         width: 16px;
     }
     .card{
         text-align: justify;
-        
+
     }
-    
-    
+
+
     #posts-container{
         padding-right: 0;
         padding-left: 0;
     }
+}
+
+
+
+
+.list-group-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-right: 60px;
+}
+
+.post-count-badge {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust as needed */
+    transform: translateY(-50%);
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+
+
+
+.post-count-badge {
+    margin-left: 10px; /* Space between text and badge */
+    white-space: nowrap; /* Prevent text wrapping */
+    display: inline-block; /* Ensure badge is inline and doesn't overlap */
 }

@@ -1,7 +1,7 @@
-<%@page import="com.programmershub.entities.Category"%>
+<%@page import="com.techpoint.helper.PgmDbConnector"%>
+<%@page import="com.techpoint.entities.Category"%>
 <%@page import="java.util.List"%>
-<%@page import="com.programmershub.daos.PostDao"%>
-<%@page import="com.programmershub.helper.PgmDbConnector"%>
+<%@page import="com.techpoint.daos.PostDao"%>
 
 <!-- Modal -->
 <div class="modal fade" id="dopost-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -66,7 +66,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Post</button>
+                        <button type="submit" class="btn nav-background text-white">Post</button>
                     </div>
                 </form>
             </div>

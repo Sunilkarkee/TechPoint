@@ -1,4 +1,4 @@
-<%@page import="com.programmershub.entities.Messages"%>
+<%@page import="com.techpoint.entities.Messages"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,10 +35,13 @@
                         
                         <div class="card">
                             
-                            <div class="card-header primary-background text-white text-center">
-                                <i class="fa fa-user-circle fa-3x"></i>
+                            <div class="card-header cstm-clr text-white text-center">
+                                <div>
+                                <i class="fa fa-user-circle fa-2x"></i>
                                 <br>
-                                <p>LogIn here</p>
+                                <h5>LogIn Here</h5>
+                                </div>
+                               
                             </div>
 
                             <%
@@ -71,11 +74,11 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <input type="checkbox" class="form-check-input cstm-clr id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                                     </div>
                                     <div class="container text-center">
-                                        <button type="submit" class="btn btn-primary">LogIn</button>
+                                        <button type="submit" class="btn cstm-clr btn-lg text-white">LogIn</button>
                                     </div>
                                 </form>
                             

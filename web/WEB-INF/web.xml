@@ -2,23 +2,43 @@
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>com.programmershub.servlets.RegisterServlet</servlet-class>
+        <servlet-class>com.techpoint.servlets.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.programmershub.servlets.LoginServlet</servlet-class>
+        <servlet-class>com.techpoint.servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>com.programmershub.servlets.Logout</servlet-class>
+        <servlet-class>com.techpoint.servlets.Logout</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditServlet</servlet-name>
-        <servlet-class>com.programmershub.servlets.EditServlet</servlet-class>
+        <servlet-class>com.techpoint.servlets.EditServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddPostServlet</servlet-name>
-        <servlet-class>com.programmershub.servlets.AddPostServlet</servlet-class>
+        <servlet-class>com.techpoint.servlets.AddPostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Like</servlet-name>
+        <servlet-class>com.techpoint.servlets.LikeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LikeServlet</servlet-name>
+        <servlet-class>com.techpoint.servlets.LikeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReactionsServlet</servlet-name>
+        <servlet-class>com.techpoint.servlets.ReactionsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReactonsServlet</servlet-name>
+        <servlet-class>com.techpoint.servlets.ReactonsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReactionServlet</servlet-name>
+        <servlet-class>com.techpoint.servlets.ReactionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -39,5 +59,21 @@
     <servlet-mapping>
         <servlet-name>AddPostServlet</servlet-name>
         <url-pattern>/AddPostServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LikeServlet</servlet-name>
+        <url-pattern>/LikeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReactionsServlet</servlet-name>
+        <url-pattern>/ReactionsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReactonsServlet</servlet-name>
+        <url-pattern>/ReactonsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReactionServlet</servlet-name>
+        <url-pattern>/ReactionServlet</url-pattern>
     </servlet-mapping>
 </web-app>

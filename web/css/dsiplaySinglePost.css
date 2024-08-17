@@ -1,0 +1,72 @@
+/* Navbar and Background Colors */
+
+.cstm-clr{
+    background-color: #1e6cc9;
+}
+
+
+.nav-background {
+    background-color: #304ffe !important;
+}
+
+.primary-background {
+    background-color: #3D5AFE !important;
+}
+
+/* Background Image for Body */
+body {
+    background: url(../Images/bg.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Custom Container Margins */
+.custom-container {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+/* Example Code Styling */
+.exmp-code h6 {
+    color: #3D5AFE;
+}
+
+.exmp-code pre {
+    color: green;
+}
+
+/* Border for User Info Row and Column Alignment */
+.row-border {
+    border-bottom: 2px solid #e2e2e2;
+    padding-bottom: 0;
+}
+
+.row-border .col-md-6 p {
+    margin-bottom: 0; /* Removes extra margin so that the text aligns with the border */
+    padding-bottom: 0; /* Ensures no padding between the text and the border */
+}
+
+/* Font Styles for Date and User Who Posted */
+.fontstyles {
+    font-style: italic;
+}
+
+/* Styling for User Name */
+.fontstyles a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    color: black;
+}
+
+/* Hover Effect for User Name */
+.fontstyles a:hover {
+    color: #3D5AFE;
+
+}
+
+/* Capitalize Text */
+.capitalize {
+    text-transform: capitalize;
+}
+
+
