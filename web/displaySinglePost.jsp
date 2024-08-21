@@ -133,17 +133,19 @@
         <main>
             <div class="custom-container">
                 <div class="row my-4">
-                    <div class="col-md-8 offset-md-2">
+                    <div class="col-md-8 offset-md-2 post-item" data-post-id="<%= pst.getPId()%>">
+
                         <div class="card">
 
                             <div class="card-header primary-background text-white">
-                                <h4 style="margin-bottom:0"><%= pst.getPTitle()%></h4>
+                                <h4 contenteditable="false" class="editable" style="margin-bottom:0"><%= pst.getPTitle()%></h4>
                             </div>
 
                             <div class="card-body">
 
                                 <div class="postimg">
-                                    <img src="blogsPics/<%=pst.getPPic()%>" class="card-img-top fixed-size-img" alt="...">
+                                    <img style="max-width:100%; max-height: 800px" src="blogsPics/<%=pst.getPPic()%>" class="card-img-top fixed-size-img" alt="...">
+                                    <input type="file" class="d-none" id="image-input-<%= pst.getPId()%>" accept="image/*" />
                                 </div>
 
                                 <div class="row my-3 row-border">
@@ -158,13 +160,13 @@
                                     </div>
                                 </div>
 
-                                <div class="pcontent">
+                                <div class="pcontent editable" contenteditable="false">
                                     <p><%= pst.getPContent()%></p>
                                 </div>
 
                                 <br>
 
-                                <div class="exmp-code"> 
+                                <div class="exmp-code editable" contenteditable="false"> 
                                     <h6>Example Code:</h6>
                                     <pre><%=pst.getPCode()%></pre> 
                                 </div>
@@ -200,19 +202,12 @@
                                 <%
                                     if (user.getId() == pst.getUserId()) {
                                 %>
-                                <div class="dropdown d-inline-block">
-
-                                    <a class="btn cstm-clr text-light custom-dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-                                        </svg>
-                                    </a>
-
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete</a></li>
-                                        <li><a class="dropdown-item" href="#">Share</a></li>
-                                    </ul>
+                                <div class="d-inline-block">
+                                    <a href="#!" class="b-link btn cstm-clr text-light btn-sm btn-edit">Edit</a>
+                                    <a href="#!" class="b-link btn cstm-clr text-light btn-sm btn-save" style="display:none;">Save</a>
+                                    <a href="#!" class="b-link btn cstm-clr text-light btn-sm btn-cancel" style="display:none;">Cancel</a>
+                                    <a href="#!" class="b-link btn cstm-clr text-light btn-sm btn-delete">Delete</a>
+                                    <a href="#!" class="b-link btn cstm-clr text-light btn-sm btn-share">Share</a>
                                 </div>
 
                                 <%
@@ -357,6 +352,8 @@
         <script src="JS/profile.js"></script>
         <script src="JS/addpostmodal.js"></script>
         <script src="JS/reactionsCount.js"></script>
+        <script src="JS/loadPosts.js"></script>
+        <script src="JS/editSinglePost.js"></script>
 
 
     </body>

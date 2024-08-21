@@ -134,12 +134,18 @@ public class PostDao {
 
         return posts;
     }
+    
+    
+//    delete post by post id 
 
-    // Delete a post by user
-    public boolean deletePostByUser(int postId, int userId) {
-        String query = "DELETE FROM posts WHERE ID = ? AND USER_ID = ?";
-        return executePostsUpdate(query, postId, userId);
+  public boolean deletePostByPid(int postId) throws SQLException {
+    String sql = "DELETE FROM posts WHERE ID = ?";
+    try (PreparedStatement stmt = this.con.prepareStatement(sql)) {
+        stmt.setInt(1, postId);
+        int rowsAffected = stmt.executeUpdate();
+        return rowsAffected > 0; // Returns true if a row was deleted
     }
+}
 
     // Update a post
     public boolean updatePost(Post post) {

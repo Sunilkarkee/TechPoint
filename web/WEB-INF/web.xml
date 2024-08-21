@@ -40,6 +40,18 @@
         <servlet-name>ReactionServlet</servlet-name>
         <servlet-class>com.techpoint.servlets.ReactionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdatePostServlet</servlet-name>
+        <servlet-class>com.techpoint.servlets.UpdatePostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletPostServlet</servlet-name>
+        <servlet-class>com.techpoint.servlets.DeletPostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePostServlet</servlet-name>
+        <servlet-class>com.techpoint.servlets.DeletePostServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -75,5 +87,17 @@
     <servlet-mapping>
         <servlet-name>ReactionServlet</servlet-name>
         <url-pattern>/ReactionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePostServlet</servlet-name>
+        <url-pattern>/UpdatePostServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletPostServlet</servlet-name>
+        <url-pattern>/DeletPostServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePostServlet</servlet-name>
+        <url-pattern>/DeletePostServlet</url-pattern>
     </servlet-mapping>
 </web-app>

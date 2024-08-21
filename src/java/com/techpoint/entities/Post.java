@@ -9,21 +9,21 @@ public class Post {
     private String pCode;
     private String pPic;
     private Timestamp pDate;
-    private static int catId;
-    private static int userId;
+    private int catId;  // Removed static
+    private int userId; // Removed static
 
- 
-    public Post(String pTitle, String pContent, String pCode, String pPic,int catId, int userId) {
-  
+    public Post(String pTitle, String pContent, String pCode, String pPic, int catId, int userId) {
         this.pTitle = pTitle;
         this.pContent = pContent;
         this.pCode = pCode;
         this.pPic = pPic;
-        
         this.catId = catId;
         this.userId = userId;
     }
 
+    public Post() {
+    }
+    
     // Constructor with all fields
     public Post(int pId, String pTitle, String pContent, String pCode, String pPic, Timestamp pDate, int catId, int userId) {
         this.pId = pId;
@@ -32,8 +32,8 @@ public class Post {
         this.pCode = pCode;
         this.pPic = pPic;
         this.pDate = pDate;
-        Post.catId = catId;
-        Post.userId = userId;
+        this.catId = catId;
+        this.userId = userId;
     }
 
     // Getters and Setters
@@ -85,20 +85,20 @@ public class Post {
         this.pDate = pDate;
     }
 
-    public static int getCatId() {
+    public int getCatId() {
         return catId;
     }
 
     public void setCatId(int catId) {
-        Post.catId = catId;
+        this.catId = catId;
     }
 
-    public static int getUserId() {
+    public int getUserId() {
         return userId;
     }
 
     public void setUserId(int userId) {
-        Post.userId = userId;
+        this.userId = userId;
     }
 
     @Override

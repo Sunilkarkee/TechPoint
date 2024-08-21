@@ -27,23 +27,43 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= pst.getPTitle()%></h5>
                     <p style="text-align: justify;" class="card-text"><%= pst.getPContent()%></p>
-                    
-                    <% 
-                    String  redirectUrl =" login.jsp";
-                       if (session.getAttribute("currentUser") != null) {
-        // User is logged in, redirect to the single post page
-        redirectUrl= "displaySinglePost.jsp?postId=" + pst.getPId();
-    }
-                    
+                    <br>
+                    <pre style="text-align: justify;" class="card-text"><%= pst.getPCode()%></pre>
+
+                    <%
+                        String redirectUrl = "login.jsp";
+                        if (session.getAttribute("currentUser") != null) {
+                            // User is logged in, redirect to the single post page
+                            redirectUrl = "displaySinglePost.jsp?postId=" + pst.getPId();
+                        }
                     %>
-                 
-                    <a href="login.jsp" class="btn cstm-clr text-light">Read More</a>
+
+                    <a href="<%= redirectUrl%>" class="btn cstm-clr text-light">Read More</a>
+
                 </div>
             </div>   
         </div>
-        <%
-            } // End of for loop
-%>
+
+        <!--edititin-->
+        
+        <div class="col-md-4 ">
+            <div class="card mx-3 my-4">
+                <img src="blogsPics/<%=pst.getPPic()%>" class="card-img-top fixed-size-img" alt="...">
+
+                <div class="card-body">
+                    <h5 class="card-title"><%= pst.getPTitle()%></h5>
+                    <p style="text-align: justify;" class="card-text"><%= pst.getPContent()%></p>
+                    <br>
+                    <pre style="text-align: justify;" class="card-text"><%= pst.getPCode()%></pre>
+
+
+
+
+
+                </div>
+            </div>   
+        </div>
+        <% }%>
     </div>
 </div>
 

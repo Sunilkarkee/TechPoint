@@ -242,6 +242,7 @@
         <script src="JS/addpostmodal.js"></script>
         <script src="JS/loadPosts.js"></script>
         <script src="JS/reactionsCount.js"></script>
+        <script src="JS/postOperation.js"></script>
 
 
 
