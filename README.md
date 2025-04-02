@@ -61,7 +61,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions, feel free to reach out:
 
-- Sunil Karkee - [sunil@example.com](mailto:sunil@example.com)
+- Sunil Karkee - [suneelkshetr@gmail.com](mailto:suneelkshetri.com)
 
 ---
 
